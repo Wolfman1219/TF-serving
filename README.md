@@ -12,6 +12,7 @@ A web interface for real-time yolo inference using streamlit. It supports CPU an
 After cloning the repo:
 1. Install requirements
    - `pip install -r requirements.txt`
+   - Install [docker](https://docs.docker.com/engine/install/debian/) in your system. 
 2. Add sample images to `data/sample_images`
 3. Add sample video to `data/sample_videos` and call it `sample.mp4` or change name in the code.
 4. Add the model file to `model/` and change code to its path.
