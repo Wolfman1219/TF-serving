@@ -152,7 +152,7 @@ def predict_image_grpc(image, channel, input_name):
     return response
 
 # Streamlit app
-st.title("MNIST Image Classifier")
+st.title("Object detection with yolov8n")
 
 # Upload an image
 input_name = get_input("/home/hasan/Public/TF-serving/model/yolov8n")
@@ -183,7 +183,6 @@ def detect_image(img):
     scores = np.max(predictions[:, 4:], axis=1)
     predictions = predictions[scores > conf_thresold, :]
     scores = scores[scores > conf_thresold]  
-    print(predictions.shape)
     class_ids = np.argmax(predictions[:, 4:], axis=1)
 
     # Get bounding boxes for each object
@@ -196,7 +195,6 @@ def detect_image(img):
     boxes = boxes.astype(np.int32)
     iou_thres = 0.1
     indices = nms(boxes, scores, iou_thres)
-    print("len bu:",len(indices))
     image_draw = rgb.copy()
     for (bbox, score, label) in zip(xywh2xyxy(boxes[indices]), scores[indices], class_ids[indices]):
         bbox = bbox.round().astype(np.int32).tolist()
